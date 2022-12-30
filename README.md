@@ -50,7 +50,7 @@ python generate_ntc_lut.py --input_file volcano_thermistor_measurements.csv --ou
 
 **--target_adc_res** [req] Resolution in bits of the ADC values stored in the final LUT. For Marlin this is usually 10.
 
-**--reference_voltage** [req] Reference voltage of the ADC. When using Marlin, this can be looked up in the corresponding *HAL.h* header below the respoective directory four your platform (e.g. *Marlin/src/HAL/LPC1768/HAL.h*). Search for `HAL_ADC_VREF`.
+**--reference_voltage** [req] Reference voltage of the ADC. When using Marlin, this can be looked up in the corresponding *HAL.h* header below the respective directory four your platform (e.g. *Marlin/src/HAL/LPC1768/HAL.h*). Search for `HAL_ADC_VREF`.
 
 **--pull_up_resistance** [req] Pullup resistor value of the voltage divider used to measure the thermistor voltage. Can be found in the schematic of the board in question.
 
