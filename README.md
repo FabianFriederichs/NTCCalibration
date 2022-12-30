@@ -29,7 +29,7 @@ The general Steinhart-Hart equation is used to model the dependency between an N
 resistance and the temperature in Kelvin:
 
 $$
-  T\left(R\right) = \frac{1}{\sum_{i}^{\infty}a_{i}\ln\left(R\right)^{i}}
+  T\left(R\right) = \frac{1}{\sum\limits_{i}^{\infty}a_{i}\ln\left(R\right)^{i}}
 $$
 
 The powers (i) actually used can vary, but 0 (constant), 1 (linear) and 3 (cubic) is the most common
