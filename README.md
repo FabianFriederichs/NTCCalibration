@@ -71,7 +71,8 @@ python generate_ntc_lut.py --input_file volcano_thermistor_measurements_res.csv 
 The resulting Steinhart-Hart coefficients and the lookup table gets printed to the console and the lookup table is stored
 into the given CSV file if applicable.
 
-If plotting is not disabled, the resulting plot should look somewhat like this (in resistance mode only the resistance plot is displayed):
+If plotting is not disabled, a plot of the measured data points and the fitted model curve is shown (in resistance mode only the resistance plot is displayed).
+It should look somewhat like this:
 ![Example Output Plot](img/example_plot.svg)
 
 ## Command Line Parameters
