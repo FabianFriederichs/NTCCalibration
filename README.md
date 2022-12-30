@@ -73,16 +73,17 @@ python generate_ntc_lut.py --input_file volcano_thermistor_measurements.csv --ou
 ## Adding a Custom Thermistor to Marlin (successfully tested with 2.1.1)
 
 1. Copy one of the named thermistor headers, e.g. *Marlin/src/module/thermistor/thermistor_5.h* and give it a new number, e.g. *Marlin/src/module/thermistor/thermistor_**3000**.h*.
-2. In the new header file, change the name of the LUT accordingly, e.g. `temptable_5` -> `temptable_3000`
-3. In the header file *Marlin/src/module/thermistor/thermistors.h* add an entry like this:
+2. In the new header file, change the name of the LUT accordingly, e.g. `temptable_5` -> `temptable_3000`.
+3. Add entries from the ouput CSV file.
+4. In the header file *Marlin/src/module/thermistor/thermistors.h* add an entry like this:
 ```C++
 #if ANY_THERMISTOR_IS(3000) // Entry for the new thermistor
   #include "thermistor_3000.h" // Include the corresponding header file containing the LUT
 #endif
 ```
-4. In *Marlin/src/lcd/thermistornames.h* add the new thermistor name:
+5. In *Marlin/src/lcd/thermistornames.h* add the new thermistor name:
 ```C++
 #elif THERMISTOR_ID == 3000
   #define THERMISTOR_NAME "New Thermistor Name"
 ```
-
+6. Recompile and flash the modified firmware.

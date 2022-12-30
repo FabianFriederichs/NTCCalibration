@@ -25,7 +25,7 @@ def main(argv):
     parser.add_argument("--sample_temp_step", required = False, type = float, help="Sample temperature step (Celsius)", default = 10.0)
     parser.add_argument("--steinhart_hart_powers", help="Steinhart-hart powers (comma separated)", default = "0,1,3")
     parser.add_argument("--temp_in_kelvin", help="Temperature in Kelvin instead of °C", action="store_true")
-    parser.add_argument("--extrapolation_max_iterations", help="Extrapolation max iterations", default = 1000, type=int)
+    parser.add_argument("--extrapolation_max_iterations", help="Maximum number of iterations to use when doing numerical inversion of the model for building the LUT.", default = 1000, type=int)
     parser.add_argument("--extrapolation_tolerance", help="Extrapolation tolerance", default = 1e-6, type=float)
     parser.add_argument("--noplot", help="Disables plotting of fitted model", action="store_true")
     args = parser.parse_args(argv)
@@ -80,14 +80,14 @@ def main(argv):
 
         # calculate points for fitted model
         model_temps = np.arange(min(measured_temps), max(measured_temps), c_plot_resolution)
-        model_resistances = np.array([sh.inverse_steinhart_hart(model_temps[i], sh_coeffs, powers, 1.0, args.temp_in_celsius, 1e-6, args.extrapolation_max_iterations, args.extrapolation_tolerance) for i in range(len(model_temps))])
+        model_resistances = np.array([sh.inverse_steinhart_hart(model_temps[i], sh_coeffs, powers, 1.0, not args.temp_in_kelvin, 1e-6, args.extrapolation_max_iterations, args.extrapolation_tolerance) for i in range(len(model_temps))])
         model_adc_values = ntc_lut.resistance_to_adc(model_resistances, args.source_adc_res, args.reference_voltage, args.pull_up_resistance)
 
         # resistance vs. temperature
         ax1.set_title("Resistance vs. Temperature")
         ax1.scatter(measured_resistances, measured_temps, label="Measured data points")
         ax1.plot(model_resistances, model_temps, label="Fitted model")
-        ax1.set_ylabel(f"Temperature ({'°C' if args.temp_in_celsius else 'K'})")
+        ax1.set_ylabel(f"Temperature ({'°C' if not args.temp_in_kelvin else 'K'})")
         ax1.set_xlabel("Resistance (ohms)")
         ax1.legend()
 
@@ -95,7 +95,7 @@ def main(argv):
         ax2.set_title(f"ADC value (0-{2**args.source_adc_res - 1}) vs. Temperature")
         ax2.scatter(adc_values, measured_temps, label="Measured data points")
         ax2.plot(model_adc_values, model_temps, label="Fitted model")
-        ax2.set_ylabel(f"Temperature ({'°C' if args.temp_in_celsius else 'K'})")
+        ax2.set_ylabel(f"Temperature ({'°C' if not args.temp_in_kelvin else 'K'})")
         ax2.set_xlabel(f"ADC value (0-{2**args.source_adc_res - 1})")
         ax2.legend()
 
