@@ -28,10 +28,16 @@ A fairly quick procedure to generate enough data points I found is the following
 The general Steinhart-Hart equation is used to model the dependency between an NTC thermistor's
 resistance and the temperature in Kelvin:
 
-![Steinhart-Hart Equation](img/steinhart-hart-eq.svg)
+$$
+  T\left(R\right) = \frac{1}{\sum_{i}^{\infty}a_{i}\ln\left(R\right)^{i}}
+$$
 
 The powers (i) actually used can vary, but 0 (constant), 1 (linear) and 3 (cubic) is the most common
-configuration.
+configuration:
+
+$$
+  T\left(R\right) \approx \frac{1}{a_{0} + a_{1}\ln\left(R\right) + a_{3}\ln\left(R\right)^{3}}
+$$
 
 ## Running the Script
 The main python script is *generate_ntc_lut.py*.
