@@ -39,6 +39,8 @@ $$
   T\left(R\right) \approx \frac{1}{a_{0} + a_{1}\ln\left(R\right) + a_{3}\ln\left(R\right)^{3}}
 $$
 
+This script supports any configuration of coefficients and defaults to 0,1,3.
+
 ## Running the Script
 The main python script is *generate_ntc_lut.py*.
 Here is an example command line for creating a LUT from the values in *volcano_thermistor_measurements.csv*:
