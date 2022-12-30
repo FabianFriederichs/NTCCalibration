@@ -56,7 +56,7 @@ python generate_ntc_lut.py --input_file volcano_thermistor_measurements.csv --ou
 
 **--sample_temp_start** [opt] Lowest temperature entry in the final LUT. Defaults to 0 °C.
 
-**--sample_temp_end** [opt] Highest temperature entry in the final LUT. Defaults to 100 °C.
+**--sample_temp_end** [opt] Highest temperature entry in the final LUT. Defaults to 300 °C.
 
 **--sample_temp_step** [opt] Step size of the final LUT. Defaults to 10 °C.
 
