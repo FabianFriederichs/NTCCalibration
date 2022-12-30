@@ -22,7 +22,7 @@ For temperature data, a thermocouple-based thermometer is a good option.
 To get the most accurate readings, drill a small hole into the side of your nozzle and place
 the thermocouple in there. I also had luck with simply holding it firmly into the nozzle orifice.
 
-3 temperature / ADC pairs are enough in theory, but the more datapoints you acquire, the better
+3 temperature / ADC pairs are enough in theory, but the more data points you acquire, the better
 the fit of the model will be. Currently the model is fitted using a simple least squares approach,
 therefore it is beneficial to filter out any obvious outliers.
 
@@ -69,9 +69,9 @@ into the given CSV file if applicable.
 
 ## Command Line Parameters
 
-**--input_file** [req] Two-column CSV file with temperature values in the first and ADC readings in the second    column.
+**--input_file** [req] Two-column CSV file with temperature values in the first and ADC (or resistance values in resistance mode) readings in the second    column.
 
-**--output_file** [opt] Two-column CSV file with sampled temperature values in the first and corresponding ADC values in the second column. If this argument is not given, no output is saved and the LUT is printed in the console.
+**--output_file** [opt] Two-column CSV file with sampled temperature values in the first and corresponding ADC (or resistance values in resistance mode) values in the second column. If this argument is not given, no output is saved and the LUT is printed in the console.
 
 **--resistance_mode** [opt] Enables resistance-only mode. Inputs are raw temperature/resistance pairs and the output LUT contains
 resistance values instead of ADC values.
