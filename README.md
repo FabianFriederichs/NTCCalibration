@@ -9,7 +9,7 @@ In case of the [Marlin](https://marlinfw.org/) firmware, you can query current A
 using the gcode commands `M105` or `M155`. In the advanced configuration header (*Configuration_adv.h*),
 `SHOW_TEMP_ADC_VALUES` must be defined to get raw ADC readings along with the temperatures.
 
-For temperature data, a thermocouple based thermometer is a good option.
+For temperature data, a thermocouple-based thermometer is a good option.
 To get the most accurate readings, drill a small hole into the side of your nozzle and place
 the thermocouple in there. I also had luck with simply holding it firmly into the nozzle orifice.
 
