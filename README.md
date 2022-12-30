@@ -4,6 +4,8 @@ The user supplies some measured temperature / ADC value pairs and some meta info
 A steinhart-hart model is fitted to the data points and a lookup table over temperatures and
 ADC values is extrapolated from this.
 
+Optionally, it also works directly with resistance values instead of ADC readings.
+
 ### Features
 - Least squares fit to an arbitrary number of data points
 - Supports arbitrary powers of the Steinhart-Hart model
