@@ -14,19 +14,19 @@ c_plot_resolution = 0.1 # degrees C
 def main(argv):
     # parse arguments
     parser = argparse.ArgumentParser(description="Generate lookup tables for NTC thermistors using measured temperature and ADC values")
-    parser.add_argument("--input_file", required = True, type=argparse.FileType('r'), help="input file containing measured temperature and ADC values (2-column CSV)")
-    parser.add_argument("--output_file", required = False, type=str, help="output file containing lookup table (2-column CSV)")
-    parser.add_argument("--source_adc_res", required = True, type=int, help="source ADC resolution (bits)")
-    parser.add_argument("--target_adc_res", required = True, type=int, help="target ADC resolution (bits)")
-    parser.add_argument("--reference_voltage", required = True, type=float, help="reference voltage (V)")
-    parser.add_argument("--pull_up_resistance", required = True, type=float, help="pull-up resistance (ohms)")
-    parser.add_argument("--sample_temp_start", required = False, type = float, help="sample temperature start (Celsius)", default = 0.0)
-    parser.add_argument("--sample_temp_end", required = False, type = float, help="sample temperature end (Celsius)", default = 350.0)
-    parser.add_argument("--sample_temp_step", required = False, type = float, help="sample temperature step (Celsius)", default = 10.0)
-    parser.add_argument("--steinhart_hart_powers", help="steinhart-hart powers (comma separated)", default = "0,1,3")
-    parser.add_argument("--temp_in_celsius", help="temperature in celsius", default = "True", action="store_true")
-    parser.add_argument("--extrapolation_max_iterations", help="extrapolation max iterations", default = 1000, type=int)
-    parser.add_argument("--extrapolation_tolerance", help="extrapolation tolerance", default = 1e-6, type=float)
+    parser.add_argument("--input_file", required = True, type=argparse.FileType('r'), help="Input file containing measured temperature and ADC values (2-column CSV)")
+    parser.add_argument("--output_file", required = False, type=str, help="Output file containing lookup table (2-column CSV)")
+    parser.add_argument("--source_adc_res", required = True, type=int, help="Source ADC resolution (bits)")
+    parser.add_argument("--target_adc_res", required = True, type=int, help="Target ADC resolution (bits)")
+    parser.add_argument("--reference_voltage", required = True, type=float, help="Reference voltage (V)")
+    parser.add_argument("--pull_up_resistance", required = True, type=float, help="Pull-up resistance (ohms)")
+    parser.add_argument("--sample_temp_start", required = False, type = float, help="Sample temperature start (Celsius)", default = 0.0)
+    parser.add_argument("--sample_temp_end", required = False, type = float, help="Sample temperature end (Celsius)", default = 350.0)
+    parser.add_argument("--sample_temp_step", required = False, type = float, help="Sample temperature step (Celsius)", default = 10.0)
+    parser.add_argument("--steinhart_hart_powers", help="Steinhart-hart powers (comma separated)", default = "0,1,3")
+    parser.add_argument("--temp_in_kelvin", help="Temperature in Kelvin instead of °C", action="store_true")
+    parser.add_argument("--extrapolation_max_iterations", help="Extrapolation max iterations", default = 1000, type=int)
+    parser.add_argument("--extrapolation_tolerance", help="Extrapolation tolerance", default = 1e-6, type=float)
     parser.add_argument("--noplot", help="Disables plotting of fitted model", action="store_true")
     args = parser.parse_args(argv)
 
@@ -59,7 +59,7 @@ def main(argv):
         args.reference_voltage,
         args.pull_up_resistance,
         powers,
-        args.temp_in_celsius,
+        not args.temp_in_kelvin,
         args.extrapolation_max_iterations,
         args.extrapolation_tolerance
     )
