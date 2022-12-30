@@ -7,7 +7,9 @@ ADC values is extrapolated from this.
 ### Features
 - Least squares fit to an arbitrary number of data points
 - Supports arbitrary powers of the Steinhart-Hart model
-- Spits out ADC LUTs compatible with Marlin
+- Spits out ADC LUTs compatible with Marlin, working directly with raw ADC readings from Marlin, no manual conversion required
+- Optional resistance-only mode which generates LUTs with temp/resistance entries, given
+temp/resistance data points instead of ADC readings
 
 ## How to get Data?
 In case of the [Marlin](https://marlinfw.org/) firmware, you can query current ADC readings
@@ -28,6 +30,8 @@ A fairly quick procedure to generate enough data points I found is the following
 3. When the target temperature is reached, turn off heating and again record data points every 5 or 10 degrees
     until a temperature close to room temp is reached
 4. Average the results from step 2 and 3 to reduce the error due to temperature lag in the system.
+
+Alternatively, resistance values can be used in resistance mode instead of ADC readings.
 
 ## Steinhart-Hart Model
 The general Steinhart-Hart equation is used to model the dependency between an NTC thermistor's
@@ -53,19 +57,30 @@ Here is an example command line for creating a LUT from the values in *volcano_t
 python generate_ntc_lut.py --input_file volcano_thermistor_measurements.csv --output_file volcano_thermistor_table.csv --source_adc_res 12 --target_adc_res 10 --reference_voltage 3.3 --pull_up_resistance 4700 --sample_temp_start 0 --sample_temp_end 300 --sample_temp_step 10
 ```
 
+In resistance mode, instead of ADC intputs and LUTs we use resistance values directly:
+```
+python generate_ntc_lut.py --input_file volcano_thermistor_measurements_res.csv --output_file volcano_thermistor_table_res.csv --resistance_mode --sample_temp_start 0 --sample_temp_end 300 --sample_temp_step 10
+```
+
+The resulting Steinhart-Hart coefficients and the lookup table gets printed to the console and the lookup table is stored
+into the given CSV file if applicable.
+
 ## Command Line Parameters
 
 **--input_file** [req] Two-column CSV file with temperature values in the first and ADC readings in the second    column.
 
 **--output_file** [opt] Two-column CSV file with sampled temperature values in the first and corresponding ADC values in the second column. If this argument is not given, no output is saved and the LUT is printed in the console.
 
-**--source_adc_res** [req] Resolution of the input ADC values in bits. When using Marlin, this can be looked up in the corresponding *HAL.h* header below the respective directory for your platform (e.g. *Marlin/src/HAL/LPC1768/HAL.h*). Search for `HAL_ADC_RESOLUTION`.
+**--resistance_mode** [opt] Enables resistance-only mode. Inputs are raw temperature/resistance pairs and the output LUT contains
+resistance values instead of ADC values.
 
-**--target_adc_res** [req] Resolution in bits of the ADC values stored in the final LUT. For Marlin this is usually 10.
+**--source_adc_res** [opt] (Required in ADC mode) Resolution of the input ADC values in bits. When using Marlin, this can be looked up in the corresponding *HAL.h* header below the respective directory for your platform (e.g. *Marlin/src/HAL/LPC1768/HAL.h*). Search for `HAL_ADC_RESOLUTION`.
 
-**--reference_voltage** [req] Reference voltage of the ADC. When using Marlin, this can be looked up in the corresponding *HAL.h* header below the respective directory four your platform (e.g. *Marlin/src/HAL/LPC1768/HAL.h*). Search for `HAL_ADC_VREF`. Usually 3.3V or 5.0V.
+**--target_adc_res** [opt] (Required in ADC mode) Resolution in bits of the ADC values stored in the final LUT. For Marlin this is usually 10.
 
-**--pull_up_resistance** [req] Pullup resistor value of the voltage divider used to measure the thermistor voltage. Can be found in the schematic of the board in question. 4700 (Ohms) seems to be a typical value.
+**--reference_voltage** [opt] (Required in ADC mode) Reference voltage of the ADC. When using Marlin, this can be looked up in the corresponding *HAL.h* header below the respective directory four your platform (e.g. *Marlin/src/HAL/LPC1768/HAL.h*). Search for `HAL_ADC_VREF`. Usually 3.3V or 5.0V.
+
+**--pull_up_resistance** [opt] (Required in ADC mode) Pullup resistor value of the voltage divider used to measure the thermistor voltage. Can be found in the schematic of the board in question. 4700 (Ohms) seems to be a typical value.
 
 **--sample_temp_start** [opt] Lowest temperature entry in the final LUT. Defaults to 0 °C.
 
