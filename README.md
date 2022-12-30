@@ -13,6 +13,10 @@ Optionally, it also works directly with resistance values instead of ADC reading
 - Optional resistance-only mode which generates LUTs with temp/resistance entries, given
 temp/resistance data points instead of ADC readings
 
+### Prerequisites
+- Python $\geq$ 3.7
+- Packages: numpy, matplotlib + GUI backend (e.g. pyqt5)
+
 ## How to get Data?
 In case of the [Marlin](https://marlinfw.org/) firmware, you can query current ADC readings
 using the gcode commands `M105` or `M155`. In the advanced configuration header (*Configuration_adv.h*),
