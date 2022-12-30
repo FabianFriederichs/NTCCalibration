@@ -9,7 +9,7 @@ In case of the [Marlin](https://marlinfw.org/) firmware, you can query current A
 using the gcode commands `M105` or `M155`. In the advanced configuration header (*Configuration_adv.h*),
 `SHOW_TEMP_ADC_VALUES` must be defined to get raw ADC readings along with the temperatures.
 
-For temperature data, a thermocouple based thermometer is a good option.
+For temperature data, a thermocouple-based thermometer is a good option.
 To get the most accurate readings, drill a small hole into the side of your nozzle and place
 the thermocouple in there. I also had luck with simply holding it firmly into the nozzle orifice.
 
@@ -50,13 +50,13 @@ python generate_ntc_lut.py --input_file volcano_thermistor_measurements.csv --ou
 
 **--target_adc_res** [req] Resolution in bits of the ADC values stored in the final LUT. For Marlin this is usually 10.
 
-**--reference_voltage** [req] Reference voltage of the ADC. When using Marlin, this can be looked up in the corresponding *HAL.h* header below the respoective directory four your platform (e.g. *Marlin/src/HAL/LPC1768/HAL.h*). Search for `HAL_ADC_VREF`.
+**--reference_voltage** [req] Reference voltage of the ADC. When using Marlin, this can be looked up in the corresponding *HAL.h* header below the respective directory four your platform (e.g. *Marlin/src/HAL/LPC1768/HAL.h*). Search for `HAL_ADC_VREF`. Usually 3.3V or 5.0V.
 
-**--pull_up_resistance** [req] Pullup resistor value of the voltage divider used to measure the thermistor voltage. Can be found in the schematic of the board in question.
+**--pull_up_resistance** [req] Pullup resistor value of the voltage divider used to measure the thermistor voltage. Can be found in the schematic of the board in question. 4700 (Ohms) seems to be a typical value.
 
 **--sample_temp_start** [opt] Lowest temperature entry in the final LUT. Defaults to 0 °C.
 
-**--sample_temp_end** [opt] Highest temperature entry in the final LUT. Defaults to 100 °C.
+**--sample_temp_end** [opt] Highest temperature entry in the final LUT. Defaults to 300 °C.
 
 **--sample_temp_step** [opt] Step size of the final LUT. Defaults to 10 °C.
 
@@ -66,7 +66,7 @@ python generate_ntc_lut.py --input_file volcano_thermistor_measurements.csv --ou
 
 **--extrapolation_max_iterations** [opt] Maximum number of iterations to use when doing numerical inversion of the model for building the LUT. Defaults to 1000.
 
-**--extrapolation_tolerance** [opt] Maximum allowable temperature error when doing numericaal inversion of the model for building the LUT. Defaults to 1e-6.
+**--extrapolation_tolerance** [opt] Maximum allowable temperature error when doing numerical inversion of the model for building the LUT. Defaults to 1e-6.
 
 **--noplot** [opt] Flag that disables a plot being shown at the end of the model fitting.
 
