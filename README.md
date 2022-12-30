@@ -66,7 +66,7 @@ python generate_ntc_lut.py --input_file volcano_thermistor_measurements.csv --ou
 
 **--extrapolation_max_iterations** [opt] Maximum number of iterations to use when doing numerical inversion of the model for building the LUT. Defaults to 1000.
 
-**--extrapolation_tolerance** [opt] Maximum allowable temperature error when doing numericaal inversion of the model for building the LUT. Defaults to 1e-6.
+**--extrapolation_tolerance** [opt] Maximum allowable temperature error when doing numerical inversion of the model for building the LUT. Defaults to 1e-6.
 
 **--noplot** [opt] Flag that disables a plot being shown at the end of the model fitting.
 
