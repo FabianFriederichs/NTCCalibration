@@ -31,6 +31,13 @@ def main(argv):
     parser.add_argument("--noplot", help="Disables plotting of fitted model", action="store_true")
     args = parser.parse_args(argv)
 
+    # in ADC mode, assert that the additional required parameters are set
+    if not args.resistance_mode:
+        assert args.source_adc_res is not None, "Source ADC resolution argument missing"
+        assert args.target_adc_res is not None, "Target ADC resolution argument missing"
+        assert args.reference_voltage is not None, "Reference voltage argument missing"
+        assert args.pull_up_resistance is not None, "Pull-up resistance argument missing"
+
     # read input file
     with args.input_file as f:
         reader = csv.reader(f)
