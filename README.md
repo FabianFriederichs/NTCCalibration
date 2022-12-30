@@ -52,7 +52,7 @@ python generate_ntc_lut.py --input_file volcano_thermistor_measurements.csv --ou
 
 **--reference_voltage** [req] Reference voltage of the ADC. When using Marlin, this can be looked up in the corresponding *HAL.h* header below the respective directory four your platform (e.g. *Marlin/src/HAL/LPC1768/HAL.h*). Search for `HAL_ADC_VREF`. Usually 3.3V or 5.0V.
 
-**--pull_up_resistance** [req] Pullup resistor value of the voltage divider used to measure the thermistor voltage. Can be found in the schematic of the board in question. 4700 (Ohms) seems to be a common value.
+**--pull_up_resistance** [req] Pullup resistor value of the voltage divider used to measure the thermistor voltage. Can be found in the schematic of the board in question. 4700 (Ohms) seems to be a typical value.
 
 **--sample_temp_start** [opt] Lowest temperature entry in the final LUT. Defaults to 0 °C.
 
