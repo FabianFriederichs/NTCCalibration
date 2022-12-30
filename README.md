@@ -59,7 +59,7 @@ Here is an example command line for creating a LUT from the values in *volcano_t
 python generate_ntc_lut.py --input_file volcano_thermistor_measurements.csv --output_file volcano_thermistor_table.csv --source_adc_res 12 --target_adc_res 10 --reference_voltage 3.3 --pull_up_resistance 4700 --sample_temp_start 0 --sample_temp_end 300 --sample_temp_step 10
 ```
 
-In resistance mode, instead of ADC intputs and LUTs we use resistance values directly:
+In resistance mode, instead of ADC readings and LUTs we use resistance values directly:
 ```
 python generate_ntc_lut.py --input_file volcano_thermistor_measurements_res.csv --output_file volcano_thermistor_table_res.csv --resistance_mode --sample_temp_start 0 --sample_temp_end 300 --sample_temp_step 10
 ```
