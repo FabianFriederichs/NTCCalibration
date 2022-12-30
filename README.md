@@ -4,6 +4,11 @@ The user supplies some measured temperature / ADC value pairs and some meta info
 A steinhart-hart model is fitted to the data points and a lookup table over temperatures and
 ADC values is extrapolated from this.
 
+### Features
+- Least squares fit to an arbitrary number of data points
+- Supports arbitrary powers of the Steinhart-Hart model
+- Spits out ADC LUTs compatible with Marlin
+
 ## How to get Data?
 In case of the [Marlin](https://marlinfw.org/) firmware, you can query current ADC readings
 using the gcode commands `M105` or `M155`. In the advanced configuration header (*Configuration_adv.h*),
