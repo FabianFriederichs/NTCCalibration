@@ -1,11 +1,3 @@
----
-title: "NTCCalibration"
-author: "Fabian Friederichs"
-date: '2022-12-31'
-bibliography: references/references.bib
-output: html_document
----
-
 # NTCCalibration
 This is a python script for calibrating NTC thermistors as they are found in 3D printer hotends.
 The user supplies some measured temperature / ADC value pairs and some meta information.
