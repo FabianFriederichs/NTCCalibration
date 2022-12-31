@@ -48,7 +48,7 @@ A fairly quick procedure to generate enough data points I found is the following
 Alternatively, resistance values can be used in resistance mode instead of ADC readings.
 
 ## Steinhart-Hart Model
-The general Steinhart-Hart equation is used to model the dependency between an NTC thermistor's
+The general Steinhart-Hart equation [^1] is used to model the dependency between an NTC thermistor's
 resistance and the temperature in Kelvin:
 
 $$
