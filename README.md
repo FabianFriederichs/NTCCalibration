@@ -9,7 +9,7 @@ output: html_document
 # NTCCalibration
 This is a python script for calibrating NTC thermistors as they are found in 3D printer hotends.
 The user supplies some measured temperature / ADC value pairs and some meta information.
-A Steinhart-Hart model [@steinhart1968calibration] is fitted to the data points and a lookup table over temperatures and
+A Steinhart-Hart model [^1] is fitted to the data points and a lookup table over temperatures and
 ADC values is extrapolated from this.
 
 Optionally, it also works directly with resistance values instead of ADC readings.
@@ -133,3 +133,6 @@ resistance values instead of ADC values.
   #define THERMISTOR_NAME "New Thermistor Name"
 ```
 6. Recompile and flash the modified firmware.
+
+## References
+[^1]: STEINHART, John S.; HART, Stanley R. Calibration curves for thermistors. In: *Deep sea research and oceanographic abstracts*. Elsevier, 1968. S. 497-503.
