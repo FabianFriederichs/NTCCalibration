@@ -33,17 +33,23 @@ using the gcode commands `M105` or `M155`. In the advanced configuration header 
 For temperature data, a thermocouple-based thermometer is a good option.
 To get the most accurate readings, drill a small hole into the side of your nozzle and place
 the thermocouple in there. I also had luck with simply holding it firmly into the nozzle orifice.
+If the thermocouple at hand fits into the hotend from above, this is even better, but requires
+a cold pull to make place for the probe.
 
 3 temperature / ADC pairs are enough in theory, but the more data points you acquire, the better
 the fit of the model will be. Currently the model is fitted using a simple least squares approach,
 therefore it is beneficial to filter out any obvious outliers.
 
-A fairly quick procedure to generate enough data points I found is the following:
+A fairly quick (but not that accurate) procedure to generate enough data points I found is the following:
 1. Start at room temperature and set the extruder temperature to the highest, safe value for your setup.
 2. Record temperature and ADC values in 5 or 10 degree steps
 3. When the target temperature is reached, turn off heating and again record data points every 5 or 10 degrees
     until a temperature close to room temp is reached
 4. Average the results from step 2 and 3 to reduce the error due to temperature lag in the system.
+
+More accurate results can be achieved by setting all sample temperatures manually and waiting for them
+to stabilize. Unfortunately, this can be quite time consuming. In general, higher temperature ranges
+should be sampled more thoroughly as the resolution of ADC readings drop the higher the temperature gets.
 
 Alternatively, resistance values can be used in resistance mode instead of ADC readings.
 
