@@ -41,7 +41,7 @@ A fairly quick (but not that accurate) procedure to generate enough data points 
 
 More accurate results can be achieved by setting all sample temperatures manually and waiting for them
 to stabilize. Unfortunately, this can be quite time consuming. In general, higher temperature ranges
-should be sampled more thoroughly as the resolution of ADC readings drop the higher the temperature gets.
+should be sampled more thoroughly as the resolution of ADC readings drops as the temperature increases.
 
 Alternatively, resistance values can be used in resistance mode instead of ADC readings.
 
